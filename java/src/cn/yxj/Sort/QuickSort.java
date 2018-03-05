@@ -11,7 +11,7 @@ public class QuickSort {
 	 * @param right
 	 */
 	public static void main(String[] args) {
-		int[]  arr={2,4,1,3,5,3};
+		int[]  arr={2,4,1,3,5,3,0};
 		int left=0;
 		int right=5;
 		System.out.println(Arrays.toString(arr));
