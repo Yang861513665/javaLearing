@@ -23,9 +23,9 @@ import com.sun.org.apache.xalan.internal.xsltc.compiler.util.ErrorMsg;
 public class ThreadPoolDemo {
 	public  static List<String> errorMsg = new ArrayList<String>();
 	  public static void main(String[] args) {
-		ThreadPoolExecutor  threadPoolExecutor =  new ThreadPoolExecutor(5, 10, 1, TimeUnit.MINUTES , new ArrayBlockingQueue<Runnable>(10));
-		 List<Integer>  list = new ArrayList<Integer>(21);
-		 for(int i=0 ;i<21;i++){
+		ThreadPoolExecutor  threadPoolExecutor =  new ThreadPoolExecutor(5, 10, 1, TimeUnit.MINUTES , new ArrayBlockingQueue<Runnable>(4));
+		 List<Integer>  list = new ArrayList<Integer>(201);
+		 for(int i=0 ;i<201;i++){
 			 list.add(i);
 		 }
 		 for(int i=0;i<list.size();i++){
