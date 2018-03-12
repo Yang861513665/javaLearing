@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<excel id="student" code="student" name="学生信息导入">
+    <colgroup>
+        <col index="A" width='17em'></col>
+        <col index="B" width='17em'></col>
+        <col index="C" width='17em'></col>
+        <col index="D" width='17em'></col>
+        <col index="E" width='17em'></col>
+        <col index="F" width='17em'></col>        
+    </colgroup>
+    <title>
+        <tr height="16px">
+            <td rowspan="1" colspan="8" value="学生信息导入" />
+        </tr>
+    </title>
+    <thead>
+        <tr height="16px">
+        	<th value="姓名" />
+            <th value="密码" />
+            <th value="性别" />
+            <th value="电话号码" />
+            <th value="班级" />
+            <th value="分组" /> 
+            <th value="项目名称" />
+            <th value="指导老师" />            
+        </tr>
+    </thead>
+    <tbody>
+        <tr height="16px" firstrow="2" firstcol="0" repeat="5">
+            <td type="string" isnullable="false" maxlength="30" /><!--姓名 -->
+            <td type="string" isnullable="false" maxlength="50" /><!--用户编号-->
+            <td type="enum" format="男,女" isnullable="true" /><!--性别 -->
+            <td type="string" isnullable="false" maxlength="11" /><!--电话号码 -->
+            <td type="enum" format="软件1班,软件2班,软件3班,软件4班" isnullable="true" /><!--班级 -->
+            <td type="enum" format="第1小组,第2小组,第3小组,第4小组" isnullable="true" /><!--分组 -->
+        	<td type="string" isnullable="false" maxlength="200" /><!--项目名称-->
+        	<td type="string" isnullable="false" maxlength="200" /><!--指导老师-->
+        
+        </tr>
+    </tbody>
+</excel>
