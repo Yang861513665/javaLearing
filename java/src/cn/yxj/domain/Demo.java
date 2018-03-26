@@ -5,6 +5,7 @@ public class Demo {
 		
 		Teacher t=new Teacher();
 		Teacher t2=new Teacher("Yang", 21);
+		String  s="aa";
 		t.show();
 		t2.show();
 	}

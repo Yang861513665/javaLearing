@@ -21,6 +21,7 @@ import com.sun.org.apache.xalan.internal.xsltc.compiler.util.ErrorMsg;
 ● keepAliveTime参数和timeUnit参数也是配合使用的。keepAliveTime参数指明等待时间的量化值，timeUnit指明量化值单位。例如keepAliveTime=1，timeUnit为TimeUnit.MINUTES，代表空闲线程的回收阀值为1分钟。
  * */
 public class ThreadPoolDemo {
+	public static  int j;
 	public  static List<String> errorMsg = new ArrayList<String>();
 	  public static void main(String[] args) {
 		ThreadPoolExecutor  threadPoolExecutor =  new ThreadPoolExecutor(5, 10, 1, TimeUnit.MINUTES , new ArrayBlockingQueue<Runnable>(4));
@@ -59,6 +60,7 @@ class  ThreadDemo1 implements Callable<String>{
 		if(list.contains(13)||list.contains(16)){
 			throw new RuntimeException("不可包含12或16");
 		}
+		System.out.println(ThreadPoolDemo.j++);
 		System.out.println("我是通过线程池启动的线程---"+ Thread.currentThread().getName()+"我执行的list为："+this.list);
 		return "成功导入";
 	}
