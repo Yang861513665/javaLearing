@@ -25,13 +25,15 @@ public class LoadTask {
 	}
     public static boolean timerTask(String msgId) {  
         ActvScheduleJob job = new ActvScheduleJob();  
-        String cron="0/10 * * * * ?";    //十秒执行一次
+        String cron="0/3 * * * * ?";    //十秒执行一次
         String jobName = msgId+"_job";  
         job.setJobId(msgId);  
         job.setJobName(jobName);  
         job.setCreateTime(new Date());  
         job.setCronExpression(cron);
         job.setJobGroup("MY_JOBGROUP_NAME");  
+        job.setBeanClass("cn.yxj.scheduler.Task");
+        job.setMethodName("run");
         job.setDescription("测试定时任务....");
         try {  
             //删除已有的定时任务  

@@ -105,7 +105,6 @@ public class QuartzManager {
      * @param time 
      * qgw 2016年1月21日 下午3:28:34 ^_^ 
      */  
-    @SuppressWarnings("unchecked")    
     public static void modifyJobTime(String jobName, String time) {   
         TriggerKey triggerKey = TriggerKey.triggerKey(  
                 jobName, TRIGGER_GROUP_NAME);  

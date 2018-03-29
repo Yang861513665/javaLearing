@@ -32,6 +32,14 @@ public class ActvScheduleJob  {
 
 	private String crcMod;// 循环模式
 	private String crcPrd;// 循环周期
+	public String getMsgId() {
+		return msgId;
+	}
+
+	public void setMsgId(String msgId) {
+		this.msgId = msgId;
+	}
+
 	private String msgId;
 
 	public void resetActvScheduleJobId(String oldActId, String newActvId) {
