@@ -57,9 +57,11 @@ class  ThreadDemo1 implements Callable<String>{
 //	}
 	@Override
 	public String call() throws Exception {
-		if(list.contains(13)||list.contains(16)){
-			throw new RuntimeException("不可包含12或16");
-		}
+		if(Thread.currentThread().getName().endsWith("2"))
+			throw new RuntimeException("线程2不能执行数据，交由其他线程完成执行..");
+//		if(list.contains(13)||list.contains(16)){
+//			throw new RuntimeException("不可包含12或16");
+//		}
 		System.out.println(ThreadPoolDemo.j++);
 		System.out.println("我是通过线程池启动的线程---"+ Thread.currentThread().getName()+"我执行的list为："+this.list);
 		return "成功导入";
