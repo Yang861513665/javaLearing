@@ -2,7 +2,6 @@ package cn.yxj.Enum;
 
 public class TestEnum {
     private Color color;
-
 	public Color getColor() {
 		return color;
 	}
