@@ -1,21 +1,45 @@
 package cn.yxj.thread;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.io.File;
+import java.io.FileFilter;
 
 
-public class Test {
-          public static void main(String[] args) {
-        	   ArrayList<String> list = new ArrayList<String>();
-        	   list.add("aa");
-        	   list.add("bb");
-        	   ArrayList<String> list2 = new ArrayList<String>();
-        	   list2.add("cc");
-        	   list2.add("dd");
-        	   list2.add("nn");
-        	   Collections.copy(list2, list);
-        	   for (String string : list2) {
-				System.out.println(string);
-			}
-		}
+
+public class Test implements  Runnable {
+   public  volatile  boolean flag;
+	@Override
+	public void run() {
+        	   System.out.println(Thread.currentThread().getName()+" start.......");
+        	   while(!flag){
+        		   System.out.println(Thread.currentThread().getName()+"------run......");
+        	   }
+        	   System.out.println(Thread.currentThread().getName()+"stop.......");
+	}
+	public   void stop(){
+		flag = true;
+	}
+	static void showFiles(File dir){
+		 for(File  file :dir.listFiles())
+	    	   if (file.isDirectory()){
+	    		     showFiles(file);
+	    	   }else{
+	    		   if(file.toString().endsWith(".txt")){
+	    			   System.out.println(file);
+	    		   }
+	    	   }
+	       }
+	public static void main(String[] args) throws Exception {
+		    File  dir  = new File("d://");
+		      showFiles(dir);
+//	          long   startTime = System.currentTimeMillis();
+//	          System.out.println(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date(startTime)));
+//		      Test test =new Test();
+//		      new Thread(test).start();
+//		      new Thread(test).start();
+//		      Thread.sleep(1000);
+//		      System.out.println(" try  to stop.....");
+//		      test.stop();
+//		      Thread.sleep(1000);
+//		      System.out.println(System.currentTimeMillis() - startTime);
+	}
 }

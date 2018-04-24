@@ -37,6 +37,7 @@ public class ThreadPoolDemo {
 						System.out.println(result.get());
 					}catch(Exception e){
 						System.out.println(e.getMessage());
+						i=i-5;
 					}
 			 }
 		 }
@@ -48,7 +49,13 @@ class  ThreadDemo1 implements Callable<String>{
    ThreadDemo1(List<Integer>  list){
 	   this.list= list;
    }
-//	@Override
+public List<Integer> getList() {
+	return list;
+}
+public void setList(List<Integer> list) {
+	this.list = list;
+}
+	//	@Override
 //	public void run(){
 //		if(list.contains(13)||list.contains(16)){
 //			throw new RuntimeException("不可包含12或16");
@@ -58,7 +65,7 @@ class  ThreadDemo1 implements Callable<String>{
 	@Override
 	public String call() throws Exception {
 		if(Thread.currentThread().getName().endsWith("2"))
-			throw new RuntimeException("线程2不能执行数据，交由其他线程完成执行..");
+			throw new RuntimeException("线程2不能执行数据，交由其他线程完成执行.."+list);
 //		if(list.contains(13)||list.contains(16)){
 //			throw new RuntimeException("不可包含12或16");
 //		}
