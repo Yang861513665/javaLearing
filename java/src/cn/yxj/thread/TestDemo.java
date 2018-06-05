@@ -1,6 +1,8 @@
 package cn.yxj.thread;
 
 import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 /**
@@ -10,7 +12,9 @@ public class TestDemo  implements Runnable{
 	int  j =1000;
 	Object lock= new Object();
     public static void main(String[] args) {
-    	ThreadPoolExecutor  executor =  new ThreadPoolExecutor(5, 10, 1, TimeUnit.MINUTES , new ArrayBlockingQueue<Runnable>(100));
+    	//创建一个定长线程池，可控制线程最大并发数，超出的线程会在队列中等待。示例代码如下：[对下面ThreadPoolExecutor的封装类]
+//    	 ExecutorService fixedThreadPool = Executors.newFixedThreadPool(5);
+    	ThreadPoolExecutor  executor =  new ThreadPoolExecutor(5, 10, 1, TimeUnit.MINUTES , new ArrayBlockingQueue<Runnable>(10));
     	TestDemo task = new TestDemo();
     	for (int i = 0; i < 10; i++) {
 			executor.submit(task);
