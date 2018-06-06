@@ -1,5 +1,6 @@
 package cn.yxj.adapter;
 
+
 // 接口实现类
 public class Usbr  implements USB{
 
@@ -7,5 +8,4 @@ public class Usbr  implements USB{
 	public void isUSB() {
          System.out.println("USB接口.");		
 	}
-
 }
