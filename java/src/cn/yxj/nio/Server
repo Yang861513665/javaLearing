@@ -1,0 +1,58 @@
+package cn.yxj.nio
+
+import java.io.IOException;
+import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
+import java.nio.channels.*;
+import java.util.Set;
+
+public class Server {
+    public static void main(String[] args) throws IOException {
+
+
+
+        ServerSocketChannel socketChannel = ServerSocketChannel.open();
+
+        socketChannel.bind(new InetSocketAddress(8080));
+        // 切换为非阻塞
+        socketChannel.configureBlocking(false);
+
+        Selector selector = Selector.open();
+
+        // 將通道註冊到選擇器上，并指定監聽“接收事件”
+        socketChannel.register(selector, SelectionKey.OP_ACCEPT);
+       // 轮询式的获取选择器上已经就绪的事件
+        while(selector.select()>0){
+            // 获取选择器上注册的所有选择键（已就绪的监听事件）
+            Set<SelectionKey> selectionKeys = selector.selectedKeys();
+            for (SelectionKey selectionKey : selectionKeys) {
+                // 获取连接就绪
+                if (selectionKey.isAcceptable()) {
+                    try {
+                        // 获取客户端连接
+                        SocketChannel socketChannel_ = socketChannel.accept();
+                        System.out.println("客户端["+socketChannel_.getRemoteAddress()+"]连接进来...");
+                        // 切换为非阻塞
+                        socketChannel_.configureBlocking(false);
+                        // 注册到选择器上
+                        socketChannel_.register(selector, SelectionKey.OP_READ);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    //获取读就绪
+                } else if (selectionKey.isReadable()) {
+                    SocketChannel socketChannel_ = (SocketChannel) selectionKey.channel();
+                    ByteBuffer buffer = ByteBuffer.allocate(1024);
+                    int len = 0;
+                    while ((len = socketChannel_.read(buffer))>0) {
+                        buffer.flip();
+                        System.out.println("客户端["+socketChannel_.getRemoteAddress()+"]: "+new String(buffer.array(),0,len));
+                        buffer.clear();
+                    }
+                }
+                // 取消选择键
+                selectionKeys.remove(selectionKey);
+            }
+        }
+    }
+}
